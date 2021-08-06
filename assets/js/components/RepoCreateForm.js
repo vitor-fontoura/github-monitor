@@ -32,7 +32,7 @@ renderField.propTypes = {
 
 const RepoCreateForm = (props) => {
   const {
-    successMessage, handleSubmit, pristine, submitting,
+    successMessage, errors, handleSubmit, pristine, submitting,
   } = props;
   return (
     <div>
@@ -52,6 +52,8 @@ const RepoCreateForm = (props) => {
               component={renderField}
               type="text"
             />
+            <div className="invalid-feedback" style={{display: 'block'}}>{errors && errors.name}</div>
+            
           </div>
           <div className="col-2">
             <button disabled={pristine || submitting} className="btn btn-block btn-primary" type="submit">
@@ -69,6 +71,7 @@ RepoCreateForm.propTypes = {
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   successMessage: PropTypes.bool.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 const validate = (values) => {
